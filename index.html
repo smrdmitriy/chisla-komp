@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Работа на уроке: Целые числа в памяти компьютера</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #2c3e50;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 1.6rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .instructions {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .instructions h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .instructions ol {
+            padding-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            background-color: #3498db;
+            color: white;
+            padding: 15px;
+            margin: -25px -25px 20px -25px;
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        
+        .task {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .task:last-child {
+            border-bottom: none;
+        }
+        
+        .task-number {
+            display: inline-block;
+            background-color: #e8f4fc;
+            color: #2c3e50;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .task-content {
+            padding-left: 10px;
+        }
+        
+        .binary-cell {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+        
+        .bit {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            background-color: white;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Работа на уроке по информатике</h1>
+            <p class="subtitle">Тема: "Целые числа в памяти компьютера"</p>
+        </header>
+        
+        <section class="instructions">
+            <h3>Общее задание для всех вариантов:</h3>
+            <ol>
+                <li>Запишите приведенное в задании натуральное число в 8-битную ячейку памяти.</li>
+                <li>Запишите приведенное в задании отрицательное целое число в 8-битную ячейку памяти.</li>
+                <li>Какое число получится, если сложить два числа, приведенных в задании, в 8-битной арифметике без знака?</li>
+                <li>Какое число получится, если сложить два числа, приведенных в задании, в 8-битной арифметике со знаком?</li>
+                <li>*Какое число получится, если сложить два числа, приведенных в задании, в 16-битной арифметике без знака?</li>
+                <li>*Какое число получится, если сложить два числа, приведенных в задании, в 16-битной арифметике со знаком?</li>
+            </ol>
+        </section>
+        
+        <div class="card-container" id="cardsContainer">
+            <!-- Карточки будут сгенерированы с помощью JavaScript -->
+        </div>
+        
+        <footer>
+            <p>Самостоятельная работа по теме "Компьютерная арифметика"</p>
+            <p>Выполните задания своего варианта в тетради.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Данные по вариантам из документа
+        const variantsData = [
+            { num: 1, task1: 113, task2: -51, task3: "70 + 227", task4: "60 + 76", task5: "30531 + 35045", task6: "21462 + 11346" },
+            { num: 2, task1: 122, task2: -102, task3: "93 + 201", task4: "76 + 60", task5: "30006 + 35551", task6: "20218 + 12608" },
+            { num: 3, task1: 90, task2: -55, task3: "87 + 192", task4: "89 + 144", task5: "30028 + 35539", task6: "22152 + 10717" },
+            { num: 4, task1: 119, task2: -84, task3: "94 + 196", task4: "98 + 117", task5: "32767 + 32860", task6: "19559 + 13284" },
+            { num: 5, task1: 110, task2: -124, task3: "83 + 204", task4: "68 + 71", task5: "32612 + 33017", task6: "19288 + 13513" },
+            { num: 6, task1: 51, task2: -103, task3: "55 + 216", task4: "67 + 111", task5: "31154 + 34432", task6: "21236 + 11572" },
+            { num: 7, task1: 103, task2: -66, task3: "63 + 200", task4: "89 + 101", task5: "33230 + 32388", task6: "21700 + 11144" },
+            { num: 8, task1: 81, task2: -78, task3: "69 + 206", task4: "51 + 133", task5: "33170 + 32433", task6: "20415 + 12391" },
+            { num: 9, task1: 121, task2: -118, task3: "85 + 209", task4: "73 + 133", task5: "34349 + 31197", task6: "19952 + 12852" },
+            { num: 10, task1: 64, task2: -99, task3: "70 + 210", task4: "88 + 130", task5: "34623 + 30939", task6: "22078 + 10798" },
+            { num: 11, task1: 105, task2: -60, task3: "87 + 176", task4: "96 + 146", task5: "33440 + 32149", task6: "21035 + 11813" },
+            { num: 12, task1: 115, task2: -56, task3: "71 + 234", task4: "59 + 114", task5: "31345 + 34285", task6: "21342 + 11494" },
+            { num: 13, task1: 65, task2: -87, task3: "55 + 253", task4: "52 + 94", task5: "32533 + 33070", task6: "20996 + 11835" },
+            { num: 14, task1: 87, task2: -64, task3: "96 + 205", task4: "85 + 118", task5: "34016 + 31602", task6: "22893 + 9964" },
+            { num: 15, task1: 98, task2: -69, task3: "65 + 234", task4: "95 + 40", task5: "34074 + 31535", task6: "20970 + 11848" },
+            { num: 16, task1: 71, task2: -92, task3: "76 + 223", task4: "78 + 146", task5: "31106 + 34515", task6: "21244 + 11580" },
+            { num: 17, task1: 50, task2: -74, task3: "69 + 212", task4: "53 + 189", task5: "34794 + 30787", task6: "19600 + 13280" },
+            { num: 18, task1: 115, task2: -75, task3: "74 + 192", task4: "77 + 88", task5: "32866 + 32714", task6: "21045 + 11796" }
+        ];
+
+        // Функция для создания карточки варианта
+        function createVariantCard(variant) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            card.innerHTML = `
+                <div class="card-header">Вариант ${variant.num}</div>
+                <div class="task">
+                    <div class="task-number">1. Натуральное число в 8-битной ячейке</div>
+                    <div class="task-content">
+                        <p>Запишите число <strong>${variant.task1}</strong> в 8-битную ячейку памяти:</p>
+                        <div class="binary-cell">
+                            ${Array(8).fill('<div class="bit"></div>').join('')}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="task">
+                    <div class="task-number">2. Отрицательное целое число в 8-битной ячейке</div>
+                    <div class="task-content">
+                        <p>Запишите число <strong>${variant.task2}</strong> в 8-битную ячейку памяти:</p>
+                        <div class="binary-cell">
+                            ${Array(8).fill('<div class="bit"></div>').join('')}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="task">
+                    <div class="task-number">3. Сложение в 8-битной арифметике без знака</div>
+                    <div class="task-content">
+                        <p>Вычислите: <strong>${variant.task3}</strong> (8-битная арифметика без знака)</p>
+                    </div>
+                </div>
+                
+                <div class="task">
+                    <div class="task-number">4. Сложение в 8-битной арифметике со знаком</div>
+                    <div class="task-content">
+                        <p>Вычислите: <strong>${variant.task4}</strong> (8-битная арифметика со знаком)</p>
+                    </div>
+                </div>
+                
+                <div class="task">
+                    <div class="task-number">5. Сложение в 16-битной арифметике без знака</div>
+                    <div class="task-content">
+                        <p>Вычислите: <strong>${variant.task5}</strong> (16-битная арифметика без знака)</p>
+                    </div>
+                </div>
+                
+                <div class="task">
+                    <div class="task-number">6. Сложение в 16-битной арифметике со знаком</div>
+                    <div class="task-content">
+                        <p>Вычислите: <strong>${variant.task6}</strong> (16-битная арифметика со знаком)</p>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Инициализация страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            const cardsContainer = document.getElementById('cardsContainer');
+            
+            // Создаем карточки для каждого варианта
+            variantsData.forEach(variant => {
+                const card = createVariantCard(variant);
+                cardsContainer.appendChild(card);
+            });
+        });
+    </script>
+</body>
+</html>
